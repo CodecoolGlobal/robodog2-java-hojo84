@@ -3,6 +3,7 @@ package com.codecool.robodog2.service;
 import com.codecool.robodog2.dao.DogDAO;
 import com.codecool.robodog2.model.Dog;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,7 +27,7 @@ public class DogService {
     }
 
     public Dog getDog(long id) {
-        return dogDAO.getDog(id);
+        return dogDAO.getDog(id).orElseThrow();
     }
 
     public void updateDog(Dog dog, long id) {

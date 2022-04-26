@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class DogMemDao implements DogDAO {
@@ -27,16 +28,15 @@ public class DogMemDao implements DogDAO {
     }
 
     @Override
-    public Dog getDog(long id) {
+    public Optional<Dog> getDog(long id) {
         return dogs.stream()
                 .filter(dog -> dog.getId() == id)
-                .findFirst()
-                .orElseThrow();
+                .findFirst();
     }
 
     @Override
     public void updateDog(Dog dog, long id) {
-        Dog dogToBeChanged = getDog(id);
+        Dog dogToBeChanged = getDog(id).orElseThrow();
         dogToBeChanged.setBreed(dog.getBreed());
         dogToBeChanged.setName(dog.getName());
         dogToBeChanged.setAge(dog.getAge());

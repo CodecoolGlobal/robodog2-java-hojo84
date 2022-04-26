@@ -3,6 +3,7 @@ package com.codecool.robodog2.dao;
 import com.codecool.robodog2.model.Dog;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface DogDAO {
 
@@ -10,7 +11,7 @@ public interface DogDAO {
 
     List<Dog> listDogs();
 
-    Dog getDog(long id);
+    Optional<Dog> getDog(long id);
 
     void updateDog(Dog dog, long id);
 
