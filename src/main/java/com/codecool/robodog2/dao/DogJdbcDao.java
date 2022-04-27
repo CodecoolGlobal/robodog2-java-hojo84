@@ -18,7 +18,7 @@ import java.util.Optional;
 @Repository
 public class DogJdbcDao implements DogDAO {
 
-    private static final Logger log = LoggerFactory.getLogger(DogMemDao.class);
+    private static final Logger log = LoggerFactory.getLogger(DogJdbcDao.class);
     private final JdbcTemplate jdbcTemplate;
     private final DogMapper dogMapper;
 
