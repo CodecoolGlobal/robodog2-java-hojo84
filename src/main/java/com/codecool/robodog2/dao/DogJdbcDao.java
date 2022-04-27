@@ -30,7 +30,7 @@ public class DogJdbcDao implements DogDAO {
     @Override
     public void addDog(Dog dog) {
         String sql = "INSERT INTO dog (breed, age, name) VALUES (?,?,?)";
-        final int insert = jdbcTemplate.update(sql, dog.getBreed(), dog.getAge(), dog.getName());
+        final int insert = jdbcTemplate.update(sql, String.valueOf(dog.getBreed()), dog.getAge(), dog.getName());
         if (insert == 1)
             log.info("New dog added: " + dog.getName());
     }
@@ -56,7 +56,7 @@ public class DogJdbcDao implements DogDAO {
     @Override
     public void updateDog(Dog dog, long id) {
         String sql = "UPDATE dog SET breed=?, age=?, name=? where id=?";
-        final int update = jdbcTemplate.update(sql, dog.getBreed(), dog.getAge(), dog.getName(), id);
+        final int update = jdbcTemplate.update(sql, String.valueOf(dog.getBreed()), dog.getAge(), dog.getName(), id);
         if (update == 1)
             log.info("Dog updated: " + dog.getName());
     }
