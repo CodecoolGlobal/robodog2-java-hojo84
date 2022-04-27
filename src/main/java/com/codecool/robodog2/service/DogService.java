@@ -12,10 +12,12 @@ import java.util.List;
 public class DogService {
 
     private final DogDAO dogDAO;
+    private final DogCreator dogCreator;
 
     @Autowired
-    public DogService(@Qualifier("dogMemDao") DogDAO dogDAO) {
+    public DogService(@Qualifier("dogMemDao") DogDAO dogDAO, DogCreator dogCreator) {
         this.dogDAO = dogDAO;
+        this.dogCreator = dogCreator;
     }
 
     public void addDog(Dog dog) {
@@ -40,5 +42,11 @@ public class DogService {
 
     public long addDogAndReturnId(Dog dog) {
         return dogDAO.addDogAndReturnId(dog);
+    }
+
+    public Dog getRandomlyCreatedDog() {
+        Dog newRandomDog = dogCreator.createRandomDog();
+        dogDAO.addDog(newRandomDog);
+        return newRandomDog;
     }
 }
