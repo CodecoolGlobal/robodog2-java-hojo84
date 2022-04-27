@@ -10,6 +10,9 @@ public class Trick {
         this.name = name;
     }
 
+    public Trick() {
+    }
+
     public long getId() {
         return id;
     }
