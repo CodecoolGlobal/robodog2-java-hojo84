@@ -6,19 +6,22 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicLong;
 
 @Repository
 public class DogMemDao implements DogDAO {
 
     private final List<Dog> dogs;
+    private final AtomicLong idCounter;
 
     public DogMemDao() {
+        this.idCounter = new AtomicLong(0);
         this.dogs = new ArrayList<>();
     }
 
     @Override
     public void addDog(Dog dog) {
-        dog.setId(dogs.size());
+        dog.setId(idCounter.incrementAndGet());
         dogs.add(dog);
     }
 
@@ -49,7 +52,7 @@ public class DogMemDao implements DogDAO {
 
     @Override
     public long addDogAndReturnId(Dog dog) {
-        dog.setId(dogs.size());
+        dog.setId(idCounter.incrementAndGet());
         dogs.add(dog);
         return dog.getId();
     }
