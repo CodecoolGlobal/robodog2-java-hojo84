@@ -46,7 +46,7 @@ public class SkillJdbcDao implements SkillDAO {
     }
 
     @Override
-    public List<Dog> listDogsByTrickId() {
+    public List<Dog> listDogsByTrickId(long trickId) {
         return null;
     }
 

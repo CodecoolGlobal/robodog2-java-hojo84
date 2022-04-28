@@ -18,7 +18,7 @@ public interface SkillDAO {
 
     void deleteSkill(long id);
 
-    List<Dog> listDogsByTrickId();
+    List<Dog> listDogsByTrickId(long trickId);
 
     Optional<Skill> getSkillByDogIdAndTrickId(long dogId, long trickId);
 }
