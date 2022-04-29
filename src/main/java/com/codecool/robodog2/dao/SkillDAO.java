@@ -21,4 +21,8 @@ public interface SkillDAO {
     List<Dog> listDogsByTrickId(long trickId);
 
     Optional<Skill> getSkillByDogIdAndTrickId(long dogId, long trickId);
+
+    Optional<Skill> getSkillByDogIdAndTrickName(long dogId, String trickName);
+
+    void updateSkillByDogIdAndTrickName(long dogId, String trickName);
 }

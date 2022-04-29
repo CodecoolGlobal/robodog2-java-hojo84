@@ -80,4 +80,26 @@ public class SkillJdbcDao implements SkillDAO {
         }
         return Optional.ofNullable(skill);
     }
+
+    @Override
+    public Optional<Skill> getSkillByDogIdAndTrickName(long dogId, String trickName) {
+        String sql = "SELECT id, dog_id, trick_id, level FROM skill WHERE dog_id=? AND trick_id=(SELECT id FROM trick WHERE name=?);";
+        Skill skill = null;
+        try {
+            skill = jdbcTemplate.queryForObject(sql, skillMapper, dogId, trickName);
+        } catch (DataAccessException e) {
+            e.printStackTrace();
+        }
+        return Optional.ofNullable(skill);
+    }
+
+    @Override
+    public void updateSkillByDogIdAndTrickName(long dogId, String trickName) {
+        Skill skillToBeUpdated = getSkillByDogIdAndTrickName(dogId, trickName).orElseThrow();
+        int currentLevel = skillToBeUpdated.getLevel();
+        if (currentLevel < 3) {
+            String sql = "UPDATE skill SET level=? WHERE dog_id=? AND trick_id=(SELECT id FROM trick WHERE name=?);";
+            jdbcTemplate.update(sql, currentLevel + 1, dogId, trickName);
+        }
+    }
 }

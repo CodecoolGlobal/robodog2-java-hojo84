@@ -45,4 +45,12 @@ public class SkillService {
     public Skill getSkillByDogIdAndTrickId(long dogId, long trickId) {
         return skillDAO.getSkillByDogIdAndTrickId(dogId, trickId).orElseThrow();
     }
+
+    public Skill getSkillByDogIdAndTrickName(long dogId, String trickName) {
+        return skillDAO.getSkillByDogIdAndTrickName(dogId, trickName).orElseThrow();
+    }
+
+    public void updateSkillByDogIdAndTrickName(long dogId, String trickName) {
+        skillDAO.updateSkillByDogIdAndTrickName(dogId, trickName);
+    }
 }
