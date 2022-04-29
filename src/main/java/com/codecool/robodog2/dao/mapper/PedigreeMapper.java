@@ -1,0 +1,21 @@
+package com.codecool.robodog2.dao.mapper;
+
+import com.codecool.robodog2.model.Pedigree;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+@Component
+public class PedigreeMapper implements RowMapper<Pedigree> {
+    @Override
+    public Pedigree mapRow(ResultSet rs, int rowNum) throws SQLException {
+        Pedigree pedigree = new Pedigree();
+        pedigree.setId(rs.getLong("id"));
+        pedigree.setId(rs.getLong("puppy_id"));
+        pedigree.setId(rs.getLong("mom_id"));
+        pedigree.setId(rs.getLong("dad_id"));
+        return pedigree;
+    }
+}
