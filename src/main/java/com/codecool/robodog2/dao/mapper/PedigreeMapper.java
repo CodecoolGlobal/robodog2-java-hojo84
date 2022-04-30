@@ -13,9 +13,9 @@ public class PedigreeMapper implements RowMapper<Pedigree> {
     public Pedigree mapRow(ResultSet rs, int rowNum) throws SQLException {
         Pedigree pedigree = new Pedigree();
         pedigree.setId(rs.getLong("id"));
-        pedigree.setId(rs.getLong("puppy_id"));
-        pedigree.setId(rs.getLong("mom_id"));
-        pedigree.setId(rs.getLong("dad_id"));
+        pedigree.setPuppyId(rs.getLong("puppy_id"));
+        pedigree.setMomId(rs.getLong("mom_id"));
+        pedigree.setDadId(rs.getLong("dad_id"));
         return pedigree;
     }
 }
