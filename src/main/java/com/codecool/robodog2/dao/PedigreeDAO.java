@@ -16,4 +16,6 @@ public interface PedigreeDAO {
     void updatePedigree(Pedigree pedigree, long id);
 
     void deletePedigree(long id);
+
+    Optional<Pedigree> getPedigreeByPuppyId(long id);
 }

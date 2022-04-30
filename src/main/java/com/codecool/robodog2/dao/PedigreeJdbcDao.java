@@ -61,4 +61,16 @@ public class PedigreeJdbcDao implements PedigreeDAO {
         String sql = "DELETE FROM pedigree WHERE id=?";
         jdbcTemplate.update(sql, id);
     }
+
+    @Override
+    public Optional<Pedigree> getPedigreeByPuppyId(long id) {
+        String sql = "SELECT id, puppy_id, mom_id, dad_id FROM pedigree WHERE puppy_id=?";
+        Pedigree pedigree = null;
+        try {
+            pedigree = jdbcTemplate.queryForObject(sql, pedigreeMapper, id);
+        } catch (DataAccessException e) {
+            e.printStackTrace();
+        }
+        return Optional.ofNullable(pedigree);
+    }
 }

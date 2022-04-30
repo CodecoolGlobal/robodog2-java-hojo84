@@ -36,4 +36,8 @@ public class PedigreeService {
     public void deletePedigree(long id) {
         pedigreeDAO.deletePedigree(id);
     }
+
+    public Pedigree getPedigreeByPuppyId(long id) {
+        return pedigreeDAO.getPedigreeByPuppyId(id).orElseThrow();
+    }
 }
