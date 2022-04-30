@@ -69,4 +69,16 @@ public class PedigreeService {
         parents.setPuppyId(newPuppyId);
         pedigreeDAO.addPedigree(parents);
     }
+
+    public Dog getParentDogByMomId(long puppyId) {
+        final Pedigree pedigreeByPuppyId = pedigreeDAO.getPedigreeByPuppyId(puppyId).orElseThrow();
+        final long momId = pedigreeByPuppyId.getMomId();
+        return dogDAO.getDog(momId).orElseThrow();
+    }
+
+    public Dog getParentDogByDadId(long puppyId) {
+        final Pedigree pedigreeByPuppyId = pedigreeDAO.getPedigreeByPuppyId(puppyId).orElseThrow();
+        final long dadID = pedigreeByPuppyId.getDadId();
+        return dogDAO.getDog(dadID).orElseThrow();
+    }
 }
