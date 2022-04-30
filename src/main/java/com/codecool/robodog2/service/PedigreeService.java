@@ -40,4 +40,9 @@ public class PedigreeService {
     public Pedigree getPedigreeByPuppyId(long id) {
         return pedigreeDAO.getPedigreeByPuppyId(id).orElseThrow();
     }
+
+    public void addPedigreeByPuppyId(long id, Pedigree pedigree) {
+        pedigree.setPuppyId(id);
+        pedigreeDAO.addPedigree(pedigree);
+    }
 }

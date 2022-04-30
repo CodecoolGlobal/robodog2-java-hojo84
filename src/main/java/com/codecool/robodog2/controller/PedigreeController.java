@@ -3,10 +3,7 @@ package com.codecool.robodog2.controller;
 import com.codecool.robodog2.model.Pedigree;
 import com.codecool.robodog2.service.PedigreeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/dog")
@@ -22,5 +19,10 @@ public class PedigreeController {
     @GetMapping("/{puppyId}/pedigree")
     public Pedigree getPedigreeByPuppyId(@PathVariable long puppyId) {
         return pedigreeService.getPedigreeByPuppyId(puppyId);
+    }
+
+    @PostMapping("/{puppyId}/pedigree")
+    public void addPedigreeByPuppyId(@PathVariable long puppyId, @RequestBody Pedigree pedigree) {
+        pedigreeService.addPedigreeByPuppyId(puppyId, pedigree);
     }
 }
