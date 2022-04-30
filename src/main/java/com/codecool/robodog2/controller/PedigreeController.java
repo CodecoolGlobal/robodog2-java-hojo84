@@ -28,8 +28,8 @@ public class PedigreeController {
     }
 
     @GetMapping("/puppy")
-    public void addPedigreeWithNewlyCreatedPuppy(@RequestBody Pedigree parentsId) {
-        pedigreeService.addPedigreeWithNewlyCreatedPuppy(parentsId);
+    public Dog addPedigreeWithNewlyCreatedPuppy(@RequestBody Pedigree parentsId) {
+        return pedigreeService.addPedigreeWithNewlyCreatedPuppy(parentsId);
     }
 
     @GetMapping("/{puppyId}/pedigree/mom")

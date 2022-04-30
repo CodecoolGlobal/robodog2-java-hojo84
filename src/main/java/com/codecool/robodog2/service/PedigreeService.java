@@ -53,7 +53,7 @@ public class PedigreeService {
         pedigreeDAO.addPedigree(pedigree);
     }
 
-    public void addPedigreeWithNewlyCreatedPuppy(Pedigree parents) {
+    public Dog addPedigreeWithNewlyCreatedPuppy(Pedigree parents) {
         final int newPuppyAge = 0;
         Dog newPuppy = dogCreator.createRandomDog();
         newPuppy.setAge(newPuppyAge);
@@ -68,6 +68,7 @@ public class PedigreeService {
         final long newPuppyId = dogDAO.addDogAndReturnId(newPuppy);
         parents.setPuppyId(newPuppyId);
         pedigreeDAO.addPedigree(parents);
+        return newPuppy;
     }
 
     public Dog getParentDogByMomId(long puppyId) {
