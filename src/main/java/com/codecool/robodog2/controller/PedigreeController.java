@@ -25,4 +25,9 @@ public class PedigreeController {
     public void addPedigreeByPuppyId(@PathVariable long puppyId, @RequestBody Pedigree pedigree) {
         pedigreeService.addPedigreeByPuppyId(puppyId, pedigree);
     }
+
+    @GetMapping("/puppy")
+    public void addPedigreeWithNewlyCreatedPuppy(@RequestBody Pedigree parentsId) {
+        pedigreeService.addPedigreeWithNewlyCreatedPuppy(parentsId);
+    }
 }
