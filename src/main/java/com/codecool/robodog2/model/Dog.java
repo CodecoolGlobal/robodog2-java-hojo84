@@ -2,6 +2,8 @@ package com.codecool.robodog2.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.util.Objects;
+
 public class Dog {
 
     @JsonIgnore
@@ -49,5 +51,18 @@ public class Dog {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Dog dog = (Dog) o;
+        return age == dog.age && breed == dog.breed && Objects.equals(name, dog.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(breed, name, age);
     }
 }
