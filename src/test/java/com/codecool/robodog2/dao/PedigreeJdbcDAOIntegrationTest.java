@@ -6,7 +6,7 @@ import com.codecool.robodog2.model.Pedigree;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.jdbc.Sql;
@@ -15,11 +15,10 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@JdbcTest
 //Use the schema built in the .sql file put in resources
 @Sql(scripts = {"classpath:schema.sql", "classpath:data.sql"})
 @ComponentScan
-//@SpringBootTest
+@SpringBootTest
 //As the context becomes dirty - database modifications happen, etc. - this method restores it to the original state
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 public class PedigreeJdbcDAOIntegrationTest {
