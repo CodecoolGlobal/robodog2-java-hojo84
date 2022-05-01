@@ -6,6 +6,8 @@ import com.codecool.robodog2.service.PedigreeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/dog")
 public class PedigreeController {
@@ -40,5 +42,10 @@ public class PedigreeController {
     @GetMapping("/{puppyId}/pedigree/dad")
     public Dog getParentDogByDadId(@PathVariable long puppyId) {
         return pedigreeService.getParentDogByDadId(puppyId);
+    }
+
+    @GetMapping("/{puppyId}/pedigree/siblings")
+    public List<Dog> getSiblingsByPuppyId(@PathVariable long puppyId) {
+        return pedigreeService.getSiblingsByPuppyId(puppyId);
     }
 }

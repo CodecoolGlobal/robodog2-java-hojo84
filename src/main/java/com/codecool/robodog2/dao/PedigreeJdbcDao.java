@@ -73,4 +73,17 @@ public class PedigreeJdbcDao implements PedigreeDAO {
         }
         return Optional.ofNullable(pedigree);
     }
+
+    @Override
+    public List<Long> getSiblingsByPuppyId(long puppyId) {
+        String sql = "WITH cte AS (\n" +
+                "SELECT mom_id as m, dad_id as d \n" +
+                "FROM pedigree \n" +
+                "WHERE puppy_id=?\n" +
+                ")\n" +
+                "SELECT puppy_id\n" +
+                "FROM pedigree p, cte\n" +
+                "where mom_id=m or dad_id=d;";
+        return jdbcTemplate.query(sql, (rs, rowNum) -> rs.getLong(1), puppyId);
+    }
 }

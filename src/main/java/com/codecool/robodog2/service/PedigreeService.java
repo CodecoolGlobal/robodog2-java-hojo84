@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class PedigreeService {
@@ -81,5 +83,13 @@ public class PedigreeService {
         final Pedigree pedigreeByPuppyId = pedigreeDAO.getPedigreeByPuppyId(puppyId).orElseThrow();
         final long dadID = pedigreeByPuppyId.getDadId();
         return dogDAO.getDog(dadID).orElseThrow();
+    }
+
+    public List<Dog> getSiblingsByPuppyId(long puppyId) {
+        final List<Long> listOfSiblingIds = pedigreeDAO.getSiblingsByPuppyId(puppyId);
+        return listOfSiblingIds.stream()
+                .map(dogDAO::getDog)
+                .map(Optional::orElseThrow)
+                .collect(Collectors.toList());
     }
 }

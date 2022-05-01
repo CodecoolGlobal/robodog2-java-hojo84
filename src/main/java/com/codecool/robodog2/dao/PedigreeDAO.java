@@ -18,4 +18,6 @@ public interface PedigreeDAO {
     void deletePedigree(long id);
 
     Optional<Pedigree> getPedigreeByPuppyId(long id);
+
+    List<Long> getSiblingsByPuppyId(long puppyId);
 }
