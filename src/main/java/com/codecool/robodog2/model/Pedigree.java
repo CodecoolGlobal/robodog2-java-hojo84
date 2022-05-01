@@ -1,5 +1,7 @@
 package com.codecool.robodog2.model;
 
+import java.util.Objects;
+
 public class Pedigree {
 
     private long id;
@@ -40,5 +42,18 @@ public class Pedigree {
 
     public void setDadId(long dadId) {
         this.dadId = dadId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pedigree pedigree = (Pedigree) o;
+        return puppyId == pedigree.puppyId && momId == pedigree.momId && dadId == pedigree.dadId;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(puppyId, momId, dadId);
     }
 }
